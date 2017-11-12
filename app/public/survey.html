@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<title>Survey</title>
+</head>
+<body>
+  <h2>Survey Questions</h2> <a href = "/"><button>Home</button><a>
+  <h4> About You</h4>
+  <form action="/api/friends" method="POST">
+
+  		Name: <input id = "name" type="text" name="name"><br>
+  		Link to Photo(Required): <input id = "photo" type="text" name="photo"><br>
+
+  		<h4>Question 1</h4>
+  		<p>Your mind is always buzzing with unexplored ideas and plans.</p>
+		<select id = "q1" name = "a1">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+		
+		<br>
+
+		<h4>Question 2</h4>
+  		<p>Generally speaking, you rely more on your experience than your imagination.</p>
+		<select id = "q2" name = "a2">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 3</h4>
+  		<p>You find it easy to stay relaxed and focused even when there is some pressure.</p>
+		<select id = "q3" name = "a3">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 4</h4>
+  		<p>You rarely do something just out of sheer curiosity.</p>
+		<select id = "q4" name = "a4">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 5</h4>
+  		<p>People can rarely upset you.</p>
+		<select id = "q5" name = "a5">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 6</h4>
+  		<p>It is often difficult for you to relate to other people’s feelings.</p>
+		<select id = "q6" name = "a6">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 7</h4>
+  		<p>In a discussion, truth should be more important than people’s sensitivities.</p>
+		<select id = "q7" name = "a7">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+
+		<br>
+
+		<h4>Question 8</h4>
+  		<p>You rarely get carried away by fantasies and ideas.</p>
+		<select id = "q8" name = "a8">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br>
+
+		<h4>Question 9</h4>
+  		<p>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</p>
+		<select id = "q9" name = "a9">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+		
+		<br>
+
+		<h4>Question 10</h4>
+  		<p>You feel more energetic after spending time with a group of people.</p>
+		<select id = "q10" name = "a10">
+		  <option value="1">1 (Strongly Disagree)</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5 (Strongly Agree)</option>
+		</select>
+
+		<br><br>
+
+  <input id = "submit" type="submit" value="Submit">
+  </form>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+   /* var NewFriend = function(name, photolink, scores){
+      	this.name = name;
+      	this.photo = photolink;
+      	this.scores = scores
+      };
+
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+      // Here we grab the form elements
+
+      var q1 = document.getElementById("q1");
+      var q2 = document.getElementById("q2");
+      var q3 = document.getElementById("q3");
+      var q4 = document.getElementById("q4");
+      var q5 = document.getElementById("q5");
+      var q6 = document.getElementById("q6");
+      var q7 = document.getElementById("q7");
+      var q8 = document.getElementById("q8");
+      var q9 = document.getElementById("q9");
+      var q10 = document.getElementById("q10");
+
+
+      var curName = $("#name").val().trim();
+      var curPhoto = $("#photo").val().trim();
+
+      var scoreArr = [];
+
+      var a1 = q1.options[q1.selectedIndex].value;
+      var a2 = q2.options[q2.selectedIndex].value;
+      var a3 = q3.options[q3.selectedIndex].value;
+      var a4 = q4.options[q4.selectedIndex].value;
+      var a5 = q5.options[q5.selectedIndex].value;
+      var a6 = q6.options[q6.selectedIndex].value;
+      var a7 = q7.options[q7.selectedIndex].value;
+      var a8 = q8.options[q8.selectedIndex].value;
+      var a9 = q9.options[q9.selectedIndex].value;
+      var a10 = q10.options[q10.selectedIndex].value;
+
+      scoreArr.push(a1)
+      scoreArr.push(a2)
+      scoreArr.push(a3)
+      scoreArr.push(a4)
+      scoreArr.push(a5)
+      scoreArr.push(a6)
+      scoreArr.push(a7)
+      scoreArr.push(a8)
+      scoreArr.push(a9)
+      scoreArr.push(a10)
+
+      var curNewFriend = new NewFriend(curName, curPhoto, scoreArr)
+
+      console.log(curNewFriend)
+      module.exports=curNewFriend
+    });*/
+
+</script>
