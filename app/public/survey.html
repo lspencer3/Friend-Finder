@@ -14,7 +14,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 	<style>
 		body {
-		    background-image: url("images/friendbg.jpg");
+		    background-color: black;
 		    color: white;
 		}
 
@@ -30,6 +30,10 @@
 
 		select{
 			color:black;
+		}
+
+		#bfModal{
+			color: black;
 		}
 		
 	</style>
@@ -186,7 +190,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <h2 id="bfName"></h2>
-	        <img id="bfImg" alt="Friend Photo">
+	        <img id="bfImg" height="300" width="250" alt="Friend Photo">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-info " data-dismiss="modal">Close</button>
@@ -262,9 +266,8 @@ $('#submit').on('click', function(event) {
 	// Add user inputs to friends list
 	$.post("/api/friends", userInput, function(data){
 		if (data === false){
-			$("#bfName").text("You are the first friend");
-	    	//$('#matchImg').attr("src", data.photo);
-		    // Show the modal with the best match 
+			console.log(data)
+			$("#bfName").html("Sorry about this you are the first friend");
 		    $("#bfModal").modal('toggle');
 		}
 		else{

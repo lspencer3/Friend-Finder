@@ -29,7 +29,7 @@ module.exports = function(app) {
     	//console.log(allScores[0])
 
 	    if(allScores[0] === undefined){
-	    	//console.log("You are the first friend")
+	    	console.log("You are the first friend")
 	    	var scores = [];
 
 		    scores.push(req.body.uscores[0])
