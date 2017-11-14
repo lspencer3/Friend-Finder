@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Font Awesome Glyphicons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<!-- Chosen -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+	<style>
+		body {
+		    background-image: url("images/friendbg.jpg");
+		    color: white;
+		}
+
+		.form-group, h1,#about,.api,#home, #submit {
+			margin-left: 50px;
+			margin-right: 50px;
+		}
+		#home{
+			position: relative;
+			left: 1120px;
+			top: -40px;
+		}
+
+		select{
+			color:black;
+		}
+		
+	</style>
 	<title>Survey</title>
 </head>
 <body>
-  <h2>Survey Questions</h2> <a href = "/"><button>Home</button><a>
-  <h4> About You</h4>
-  <form action="/api/friends" method="POST">
+  <h1>Survey Questions</h1> <a href = "/"><button id = "home" class="btn btn-info">Home</button></a>
+  <h2 id = "about"> About You</h2>
+  <form>
 
-  		Name: <input id = "name" type="text" name="name"><br>
-  		Link to Photo(Required): <input id = "photo" type="text" name="photo"><br>
+  	<div class="form-group">
+
+
+  		Name (Required): <input class="form-control" id = "name" type="text" name="name"><br>
+  		Link to Photo(Required): <input class="form-control" id = "photo" type="text" name="photo"><br>
 
   		<h4>Question 1</h4>
   		<p>Your mind is always buzzing with unexplored ideas and plans.</p>
@@ -22,7 +56,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 		
-		<br>
+		<br><br>
 
 		<h4>Question 2</h4>
   		<p>Generally speaking, you rely more on your experience than your imagination.</p>
@@ -34,7 +68,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 3</h4>
   		<p>You find it easy to stay relaxed and focused even when there is some pressure.</p>
@@ -46,7 +80,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 4</h4>
   		<p>You rarely do something just out of sheer curiosity.</p>
@@ -58,7 +92,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 5</h4>
   		<p>People can rarely upset you.</p>
@@ -70,7 +104,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 6</h4>
   		<p>It is often difficult for you to relate to other people’s feelings.</p>
@@ -82,7 +116,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 7</h4>
   		<p>In a discussion, truth should be more important than people’s sensitivities.</p>
@@ -95,7 +129,7 @@
 		</select>
 
 
-		<br>
+		<br><br>
 
 		<h4>Question 8</h4>
   		<p>You rarely get carried away by fantasies and ideas.</p>
@@ -107,7 +141,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 
-		<br>
+		<br><br>
 
 		<h4>Question 9</h4>
   		<p>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</p>
@@ -119,7 +153,7 @@
 		  <option value="5">5 (Strongly Agree)</option>
 		</select>
 		
-		<br>
+		<br><br>
 
 		<h4>Question 10</h4>
   		<p>You feel more energetic after spending time with a group of people.</p>
@@ -132,73 +166,115 @@
 		</select>
 
 		<br><br>
-
-  <input id = "submit" type="submit" value="Submit">
+  </div>
   </form>
+  <button id = "submit" class="btn btn-info btn-lg btn-block">Submit</button>
+
+  <br>
+
+  <a class = "api" href="/api/friends">API Friends List</a> | <a href="https://github.com/lspencer3/Friend-Finder" target="_blank">GitHub Repo</a>
+
+<!-- Modal -->
+	<div id="bfModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h2 class="modal-title glyphicon glyphicon-user"><strong>Best Match</strong></h2>
+	      </div>
+	      <div class="modal-body">
+	        <h2 id="bfName"></h2>
+	        <img id="bfImg" alt="Friend Photo">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-info " data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </body>
 </html>
 
 
 <script type="text/javascript">
+//reset function
 
-    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-   /* var NewFriend = function(name, photolink, scores){
-      	this.name = name;
-      	this.photo = photolink;
-      	this.scores = scores
-      };
+ function reset() {
+    $("#q1 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q2 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q3 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q4 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q5 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q6 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q7 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q8 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q9 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $("#q10 option").prop('selected', function() {
+        return this.defaultSelected;
+    });
+    $('#name').val("")
+	$('#photo').val("")
+};
 
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
-
-      // Here we grab the form elements
-
-      var q1 = document.getElementById("q1");
-      var q2 = document.getElementById("q2");
-      var q3 = document.getElementById("q3");
-      var q4 = document.getElementById("q4");
-      var q5 = document.getElementById("q5");
-      var q6 = document.getElementById("q6");
-      var q7 = document.getElementById("q7");
-      var q8 = document.getElementById("q8");
-      var q9 = document.getElementById("q9");
-      var q10 = document.getElementById("q10");
-
-
-      var curName = $("#name").val().trim();
-      var curPhoto = $("#photo").val().trim();
-
-      var scoreArr = [];
-
-      var a1 = q1.options[q1.selectedIndex].value;
-      var a2 = q2.options[q2.selectedIndex].value;
-      var a3 = q3.options[q3.selectedIndex].value;
-      var a4 = q4.options[q4.selectedIndex].value;
-      var a5 = q5.options[q5.selectedIndex].value;
-      var a6 = q6.options[q6.selectedIndex].value;
-      var a7 = q7.options[q7.selectedIndex].value;
-      var a8 = q8.options[q8.selectedIndex].value;
-      var a9 = q9.options[q9.selectedIndex].value;
-      var a10 = q10.options[q10.selectedIndex].value;
-
-      scoreArr.push(a1)
-      scoreArr.push(a2)
-      scoreArr.push(a3)
-      scoreArr.push(a4)
-      scoreArr.push(a5)
-      scoreArr.push(a6)
-      scoreArr.push(a7)
-      scoreArr.push(a8)
-      scoreArr.push(a9)
-      scoreArr.push(a10)
-
-      var curNewFriend = new NewFriend(curName, curPhoto, scoreArr)
-
-      console.log(curNewFriend)
-      module.exports=curNewFriend
-    });*/
-
+// Activate submit button
+$('#submit').on('click', function(event) {
+	event.preventDefault();
+	// Gather user inputs
+	var userInput = {
+		name: $('#name').val().trim(),
+		photo: $('#photo').val().trim(),
+		uscores:[
+			$('#q1').val(),
+			$('#q2').val(),
+			$('#q3').val(),
+			$('#q4').val(),
+			$('#q5').val(),
+			$('#q6').val(),
+			$('#q7').val(),
+			$('#q8').val(),
+			$('#q9').val(),
+			$('#q10').val()
+		]
+	}
+	console.log('userInput = ' + JSON.stringify(userInput));
+			
+	// Add user inputs to friends list
+	$.post("/api/friends", userInput, function(data){
+		if (data === false){
+			$("#bfName").text("You are the first friend");
+	    	//$('#matchImg').attr("src", data.photo);
+		    // Show the modal with the best match 
+		    $("#bfModal").modal('toggle');
+		}
+		else{
+      		// Set the name and image values of friend match
+      		$('#bfName').html(data[0]);
+		    $("#bfImg").attr("src", data[1]);
+		    // Pop open the modal dialog
+      		$("#bfModal").modal('toggle');
+      	}
+    });
+    reset()
+});
 </script>

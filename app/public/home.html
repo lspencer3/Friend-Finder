@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<title>Friend Finder-Home</title>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Font Awesome Glyphicons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<!-- Chosen -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+	<style>
+		body {
+		    background-image: url("images/friendbg.jpg");
+		}
+
+		.jumbotron{
+			background-color: rgba(0,0,250,0.3);
+			color: white;
+			text-align: center;
+		}
+	</style>
+
 </head>
 <body>
-	<h1>(input icon here)Friend Finder</h1>
+	<div class="jumbotron">
+	<h1 class="glyphicon glyphicon-user">Friend Finder</h1>
 	<h3>Answer a few basic questions</h3>
 	<h3>Then find the friend with the greatest compatibility!</h3>
-	<a href = "/survey"><button>Take Survey</button></a>
+	<a href = "/survey"><button class = "btn btn-info">Take Survey</button></a>
+	</div>
 </body>
 </html>
